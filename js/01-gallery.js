@@ -26,10 +26,15 @@ gallery.addEventListener("click", handlerClick);
 
 function handlerClick(event) {
   event.preventDefault();
+
+  if (event.target === event.currentTarget) {
+    return;
+  }
   const originalImg = event.target.dataset.source;
   const instance = basicLightbox.create(`
 	<img class='js-esc' src="${originalImg}">
 `);
+
   instance.show();
   closeModal();
   function closeModal() {
