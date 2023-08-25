@@ -36,18 +36,31 @@ function handlerClick(event) {
 `);
 
   instance.show();
-  closeModal();
-  function closeModal() {
-    if (instance.visible()) {
-      document.addEventListener("keydown", handlerkeydown);
-      function handlerkeydown(event) {
-        if (event.code === "Escape") {
-          instance.close();
-        }
-        if (!instance.visible()) {
-          document.removeEventListener("keydown", handlerkeydown);
-        }
-      }
+
+  gallery.addEventListener("keydown", handlerClose);
+  function handlerClose(evt) {
+    console.log(evt.code);
+    if (evt.code === "Escape") {
+      instance.close();
+      gallery.removeEventListener("keydown", handlerClose);
+    }
+    if (!instance.visible()) {
+      gallery.removeEventListener("keydown", handlerClose);
     }
   }
+
+  // closeModal();
+  // function closeModal() {
+  //   if (instance.visible()) {
+  //     // document.addEventListener("keydown", handlerkeydown);
+  //     function handlerkeydown(event) {
+  //       if (event.code === "Escape") {
+  //         instance.close();
+  //       }
+  //       if (!instance.visible()) {
+  //         // document.removeEventListener("keydown", handlerkeydown);
+  //       }
+  //     }
+  //   }
+  // }
 }
